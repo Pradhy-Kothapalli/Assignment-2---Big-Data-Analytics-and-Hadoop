@@ -140,3 +140,4 @@ Document3 Sample text with different words
 "Document2, Document3 Similarity: 0.50"
 ```
 ## Obtained Output: (Place your obtained output here.)
+![Document Similarity Output](Screenshot%202026-02-24%20004326.png)
