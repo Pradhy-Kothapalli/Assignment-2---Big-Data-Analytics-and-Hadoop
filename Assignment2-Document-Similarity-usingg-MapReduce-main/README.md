@@ -8,9 +8,11 @@
 
 ### Mapper Design
 [Explain the logic of your Mapper class. What is its input key-value pair? What does it emit as its output key-value pair? How does it help in solving the overall problem?]
+
 The Mapper class reads the input line by line, where each line represents one document. The input key is the byte offset of the line in the file, and the value is the full line of text in the document. The mapper splits the line into a document ID(First token) and the content (remaining tokens). The output key is the document ID, and the value is a unique word from the document.
 ### Reducer Design
 [Explain the logic of your Reducer class. What is its input key-value pair? How does it process the values for a given key? What does it emit as the final output? How do you calculate the Jaccard Similarity here?]
+
 The Reducer class receives all words grouped by the document ID, then for each Document, the reducer builds a set of unique words and stores it in a HashMap. The final output is the key as a document pair and the value as the similarity score between the two documents. To compute the Jaccard Similarity score, the reducer uses addAll() and retainAll() for union and intersection respectively, and the similarity is calculated using the given formula.
 ### Overall Data Flow
 [Describe how data flows from the initial input files, through the Mapper, shuffle/sort phase, and the Reducer to produce the final output.]
@@ -103,7 +105,7 @@ To copy the output from HDFS to your local machine:
 
 1. Use the following command to copy from HDFS:
     ```bash
-    hdfs dfs -get /output1 /opt/hadoop-3.2.1/share/hadoop/mapreduce/
+    hdfs dfs -get /output_similarity /opt/hadoop-3.2.1/share/hadoop/mapreduce/
     ```
 
 2. use Docker to copy from the container to your local machine:
@@ -121,6 +123,8 @@ To copy the output from HDFS to your local machine:
 ## Challenges and Solutions
 
 [Describe any challenges you faced during this assignment. This could be related to the algorithm design (e.g., how to generate pairs), implementation details (e.g., data structures, debugging in Hadoop), or environmental issues. Explain how you overcame these challenges.]
+
+I had not changed the command to copy output from HDFS to Local OS which caused the last step to fail.
 
 ---
 ## Sample Input
